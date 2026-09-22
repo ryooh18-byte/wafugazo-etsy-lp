@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>［ページタイトルをここに入力］</title>
+  <meta name="description" content="［メタディスクリプション（検索結果に表示される説明文）をここに入力］">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23445348'/%3E%3Cpath d='M18 42c10-2 18-10 20-24 7 10 7 22-1 29-6 5-14 4-19-5Z' fill='%23fffaf2'/%3E%3Cpath d='M19 43c7-8 13-13 21-19' fill='none' stroke='%23d28d68' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root{
+      --paper:#f8f5ee;--paper-2:#eee9df;--card:#fffdf9;--ink:#30312d;--muted:#676158;
+      --sage:#718075;--sage-deep:#3d5148;--sage-pale:#e7ede7;--terra:#b87556;--terra-pale:#f4e6dd;
+      --line:#d9d2c6;--line-green:#007d3b;--shadow:0 22px 55px rgba(61,55,45,.11);
+      --serif:"Noto Serif JP","Yu Mincho",serif;--sans:"Noto Sans JP","Yu Gothic",sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{margin:0;background:linear-gradient(90deg,rgba(61,81,72,.022) 1px,transparent 1px) 0 0/52px 52px,var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.9;font-weight:500}
+    a{color:inherit}
+    .wrap{width:min(760px,calc(100% - 34px));margin:auto}
+    .wide{width:min(1120px,calc(100% - 48px));margin:auto}
+    .eyebrow{font-size:.78rem;letter-spacing:.15em;font-weight:700;color:var(--sage-deep);text-transform:uppercase}
+    .eyebrow.steps-kicker{font-size:1rem}
+
+    /* ===== header / タイトル ===== */
+    .hero{padding:24px 0 58px;overflow:hidden;background:radial-gradient(circle at 87% 7%,rgba(184,117,86,.18),transparent 29%),radial-gradient(circle at 4% 92%,rgba(61,81,72,.09),transparent 28%),linear-gradient(145deg,#fffdf9 0%,#f0ece3 100%)}
+    .hero-nav{display:flex;align-items:center;justify-content:center;margin-bottom:36px;padding-top:16px;border-top:1px dashed rgba(68,83,72,.28)}
+    .profile-link{display:grid;grid-template-columns:72px auto;gap:17px;align-items:center;padding:9px 15px;border-radius:18px;text-decoration:none;text-align:left;background:rgba(255,253,249,.72);border:1px solid rgba(61,81,72,.13);box-shadow:0 8px 28px rgba(61,55,45,.06);transition:.2s background-color,.2s transform}
+    .profile-link:hover{background:rgba(255,255,255,.85);transform:translateY(-1px)}
+    .profile-link:focus-visible{outline:3px solid #1a73e8;outline-offset:3px}
+    .profile-photo{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid rgba(68,83,72,.18)}
+    .profile-copy{display:grid;line-height:1.5}
+    .profile-copy small{font-size:.78rem;color:var(--muted)}
+    .profile-copy strong{font-family:var(--serif);font-size:1.2rem}
+    .profile-copy span{font-size:.86rem;color:var(--sage-deep)}
+    .hero-title{max-width:820px;margin:0 auto;text-align:center}
+    h1,h2,h3{font-family:var(--serif);line-height:1.55;margin-top:0}
+    h1{font-size:clamp(2.15rem,4.6vw,3.35rem);line-height:1.48;letter-spacing:.015em;margin-bottom:0}
+    h1 em{font-style:normal;color:var(--terra);background:linear-gradient(transparent 70%,rgba(200,126,90,.16) 0)}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:58px;padding:14px 25px;border-radius:999px;background:var(--line-green);color:#fff;text-decoration:none;font-weight:700;box-shadow:0 10px 24px rgba(0,125,59,.24);transition:.2s transform,.2s box-shadow;text-align:center}
+    .button:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,125,59,.3)}
+    .button:focus-visible,.copy:focus-visible{outline:3px solid #1a73e8;outline-offset:3px}
+
+    /* ===== section basics ===== */
+    section{padding:70px 0}
+    .section-head{text-align:center;margin-bottom:38px}
+    .section-head .eyebrow{display:inline-flex;align-items:center;gap:10px}
+    .section-head .eyebrow:before,.section-head .eyebrow:after{content:"";width:22px;height:1px;background:currentColor;opacity:.5}
+    .section-head h2{font-size:clamp(1.65rem,5vw,2.25rem);margin:9px 0 14px}
+    .section-head p{color:var(--muted);margin:0}
+    .accent{color:var(--terra)}
+
+    /* ===== 特典バナー（3箇所で共通） ===== */
+    .banner-section{padding:14px 0 50px}
+    .cta-banner-link{display:block;border-radius:20px;overflow:hidden;box-shadow:0 16px 38px rgba(97,66,50,.14);transition:.2s transform}
+    .cta-banner-link:hover{transform:translateY(-2px)}
+    .cta-banner-link:focus-visible{outline:3px solid #1a73e8;outline-offset:3px}
+    .banner-caption{margin:12px 0 0;color:var(--muted);text-align:center;font-size:.85rem}
+    .cta-banner{display:block;width:100%;height:auto}
+
+    /* ===== お礼＋自己紹介 ===== */
+    .self-intro{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.52),rgba(255,255,255,0))}
+    .intro-text{margin:0;color:var(--muted);text-align:center;max-width:560px;margin-inline:auto;line-height:1.95;white-space:pre-line}
+
+    /* ===== このLPの概要 ===== */
+    .overview p{color:var(--muted);text-align:center;max-width:640px;margin:0 auto 22px;white-space:pre-line}
+    .overview .check-list{max-width:460px;margin:0 auto}
+
+    /* ===== ステップ形式 ===== */
+    .steps{background:radial-gradient(circle at 94% 2%,rgba(184,117,86,.08),transparent 18%),radial-gradient(circle at 3% 98%,rgba(61,81,72,.08),transparent 18%),var(--paper-2)}
+    .step{position:relative;overflow:hidden;background:var(--card);border:1px solid #d8d0c3;border-radius:30px;padding:42px 40px;margin-bottom:24px;box-shadow:0 13px 34px rgba(61,55,45,.07)}
+    .step[data-step]:before{content:attr(data-step);position:absolute;top:8px;right:24px;font-family:var(--serif);font-size:5.6rem;line-height:1;color:rgba(61,81,72,.055);font-weight:700;letter-spacing:-.08em}
+    .step>*{position:relative;z-index:1}
+    .step-label{display:inline-block;border-radius:999px;background:linear-gradient(135deg,var(--sage-deep),#586b61);color:#fff;padding:5px 16px;font-size:.79rem;font-weight:700;letter-spacing:.08em;box-shadow:0 6px 16px rgba(61,81,72,.15)}
+    .step h3{font-size:1.55rem;margin:14px 0 10px}
+    .step>p{color:var(--muted)}
+    .step .illustration{display:block;width:100%;border-radius:18px;margin:18px 0;box-shadow:0 10px 26px rgba(61,55,45,.08)}
+    .step .illustration-grid{display:grid;gap:14px;margin:18px 0}
+    .illustration-caption{margin:-10px 0 0;color:var(--muted);text-align:center;font-size:.78rem}
+
+    .check-list{display:grid;gap:9px;padding:0;margin:22px 0;list-style:none}
+    .check-list li{position:relative;padding-left:31px}
+    .check-list li:before{content:"✓";position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;background:var(--sage-pale);color:var(--sage-deep);display:grid;place-items:center;font-size:.78rem;font-weight:700}
+
+    .prompt{position:relative;background:linear-gradient(145deg,#262a27,#343a35);color:#f9f7f1;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:22px;margin-top:23px;box-shadow:0 14px 30px rgba(32,35,32,.15)}
+    .prompt:before{content:"";position:absolute;left:0;top:22px;bottom:22px;width:3px;border-radius:0 3px 3px 0;background:var(--terra)}
+    .prompt-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:12px}
+    .prompt-head b{font-size:.9rem;color:#dbe8d8}
+    .copy{border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;border-radius:999px;padding:7px 13px;cursor:pointer;font:inherit;font-size:.78rem}
+    .prompt pre{white-space:pre-wrap;margin:0;font-family:var(--sans);font-size:.87rem;line-height:1.75;color:#f7f3e9}
+    .prompt-details summary{cursor:pointer;color:#cfe3d5;font-size:.85rem}
+    .prompt-details summary::marker{color:#cfe3d5}
+    .prompt-details[open] summary{margin-bottom:14px}
+
+    /* 警告・注意書きは落ち着いたトーンに */
+    .note{margin-top:22px;border-left:3px solid rgba(184,117,86,.55);background:#f6efe8;padding:16px 18px;border-radius:0 12px 12px 0;color:var(--muted)}
+    .note b{color:#6a5a4c}
+    .rule{display:flex;gap:12px;align-items:flex-start;margin:18px 0;padding:16px 18px;border:1px solid #e6dccf;border-radius:14px;background:#f6f2ea}
+    .rule b{display:block;color:var(--sage-deep);font-size:.82rem;letter-spacing:.04em;margin-bottom:4px}
+    .rule p{margin:0;font-size:.89rem;line-height:1.7;color:var(--muted)}
+
+    .plain-box{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:30px;margin-top:26px;box-shadow:0 7px 20px rgba(61,55,45,.035)}
+    .plain-box h3{font-size:1.35rem;margin-bottom:10px}
+    .plain-box p{margin:0;color:var(--muted)}
+    .plain-box .check-list{margin:14px 0 0}
+    .plain-box pre{white-space:pre-wrap;margin:14px 0 0;padding:16px 18px;background:var(--paper-2);border-radius:12px;font-family:var(--sans);font-size:.85rem;line-height:1.75;color:var(--ink)}
+
+    .source-links{margin-top:20px;font-size:.8rem;color:var(--muted)}
+    .source-links a{color:var(--sage-deep)}
+
+    /* ===== 表（リサーチ・トラブル対処表） ===== */
+    .table-wrap{margin:24px 0;overflow-x:auto;border:1px solid var(--line);border-radius:16px}
+    table{width:100%;border-collapse:collapse;background:var(--card);font-size:.92rem}
+    th,td{padding:12px 15px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    th{background:var(--paper-2);color:var(--sage-deep);font-weight:700}
+    tr:last-child td{border-bottom:0}
+
+    /* ===== 締めのMESSAGE ===== */
+    .closing-message{padding:20px 0 30px}
+    .completion{margin:0;padding:32px 34px;border-radius:24px;background:var(--sage-deep);color:#fff;text-align:center;box-shadow:0 20px 42px rgba(61,81,72,.18)}
+    .completion b{display:block;font-family:var(--serif);font-size:1.35rem}
+    .completion span{display:block;margin-top:8px;color:#e7ede5;font-size:.95rem}
+
+    /* ===== 長文メッセージカード ===== */
+    .message-card{margin-top:8px;padding:52px 34px;border-radius:30px;text-align:center;background:radial-gradient(circle at 15% 0%,rgba(184,117,86,.16),transparent 32%),linear-gradient(160deg,#f7e9dd,#f3ddd0);border:1px solid #ecd6c6;box-shadow:0 22px 50px rgba(97,66,50,.12)}
+    .message-badge{display:inline-block;margin-bottom:20px;padding:8px 20px;border-radius:999px;background:#fffaf5;border:1px solid #e7cdb8;color:var(--terra);font-size:.8rem;font-weight:700;letter-spacing:.04em}
+    .message-card h3{font-size:clamp(1.5rem,4.5vw,1.9rem);margin-bottom:24px}
+    .message-card p{margin:0 0 20px;color:var(--ink);line-height:2;white-space:pre-line}
+    .message-card .button{margin-top:8px}
+    .message-card .fine{margin-top:14px!important}
+
+    /* ===== 最後のCTA ===== */
+    .cta{padding-top:10px}
+    .cta-card{position:relative;overflow:hidden;text-align:center;border-radius:30px;padding:52px 30px;background:radial-gradient(circle at 9% 12%,rgba(255,255,255,.7),transparent 28%),linear-gradient(145deg,#f6e9e1,#f1dfd4);border:1px solid #e8d2c6;box-shadow:0 24px 58px rgba(97,66,50,.11)}
+    .cta-card:before,.cta-card:after{content:"";position:absolute;border:1px solid rgba(184,117,86,.22);border-radius:50%}
+    .cta-card:before{width:180px;height:180px;left:-110px;top:-95px}
+    .cta-card:after{width:120px;height:120px;right:-72px;bottom:-58px}
+    .cta-card>*{position:relative;z-index:1}
+    .cta-card .cta-banner-link{margin:0 0 26px}
+    .cta-card p{color:var(--muted);margin:0 0 25px}
+    .cta-card .button{width:min(430px,100%)}
+    .fine{font-size:.75rem!important;margin-top:13px!important;color:#746d63!important}
+
+    /* ===== footer ===== */
+    footer{padding:42px 0 110px;text-align:center;color:var(--muted);font-size:.8rem}
+    .footer-links{display:flex;justify-content:center;gap:20px;margin-bottom:13px}
+    .sticky{display:none}
+
+    @media(max-width:760px){
+      body{font-size:16px}
+      .wide{width:min(100% - 28px,680px)}
+      .hero{padding:18px 0 48px}
+      .hero-nav{margin-bottom:28px;padding-top:14px}
+      .profile-link{grid-template-columns:62px auto;gap:13px;padding:8px;background:rgba(255,253,249,.78)}
+      .profile-photo{width:62px;height:62px}
+      .profile-copy small{font-size:.7rem}.profile-copy strong{font-size:1.08rem}.profile-copy span{font-size:.78rem}
+      .hero-title h1{font-size:clamp(1.72rem,7.6vw,2.05rem);line-height:1.52}
+      section{padding:54px 0}
+      .banner-section{padding:8px 0 38px}
+      .step{padding:31px 22px;border-radius:24px}.step[data-step]:before{top:12px;right:16px;font-size:4.5rem}
+      .prompt-head{align-items:flex-start}.prompt pre{font-size:.82rem}
+      .plain-box{padding:24px 20px}
+      th,td{min-width:128px}
+      .completion{padding:26px 22px;border-radius:20px}
+      .cta-card{padding-left:16px;padding-right:16px;border-radius:26px}
+      .sticky{display:block;position:fixed;z-index:10;left:0;right:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(251,248,241,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+      .sticky .button{width:100%;min-height:52px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}}
+  </style>
+</head>
+<body>
+  <!-- ===== 1. タイトル【変わる部分】 ===== -->
+  <header class="hero">
+    <div class="wide">
+      <div class="hero-nav">
+        <a class="profile-link" href="https://www.instagram.com/kumi_ai_fukugyo/" target="_blank" rel="noopener noreferrer" aria-label="くみのInstagramを開く">
+          <img class="profile-photo" src="./assets/kumi-profile.png" alt="くみ">
+          <span class="profile-copy"><small>54歳からのAI×おうちワーク</small><strong>くみ</strong><span>@kumi_ai_fukugyo</span></span>
+        </a>
+      </div>
+      <div class="hero-title">
+        <h1>［タイトル1行目］<br><em>［強調したいキーワード（例：完全ガイド）］</em></h1>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== 2. 特典バナー（1箇所目）【固定】 ===== -->
+    <section class="banner-section">
+      <div class="wrap">
+        <a class="cta-banner-link" href="https://x.gd/z6wxZ" target="_blank" rel="noopener noreferrer">
+          <img class="cta-banner" src="./assets/free-gift-banner.png" alt="AI副業の完全ガイド 5大特典無料プレゼント">
+        </a>
+        <p class="banner-caption">タップで受け取れます👆</p>
+      </div>
+    </section>
+
+    <!-- ===== 3. お礼＋自己紹介（ペルソナ）【固定】 ===== -->
+    <section class="self-intro">
+      <div class="wrap">
+        <p class="intro-text">この特典を受け取ってくださり、本当にありがとうございます。
+
+54歳からAIを学び始めた経験をもとに、パソコンが苦手な50代女性へ、
+AIで副収入を得るための方法を分かりやすく発信しています✨</p>
+      </div>
+    </section>
+
+    <!-- ===== 4. このLPの概要【変わる部分】 ===== -->
+    <section class="overview">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">このガイドについて</p>
+          <h2>［テーマ名］とは</h2>
+        </div>
+        <p>［テーマを1文で説明］</p>
+        <ul class="check-list">
+          <li>［ポイント1］</li>
+          <li>［ポイント2］</li>
+          <li>［ポイント3］</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 5. 実際の説明（STEP形式）【変わる部分：台本の中身はここに入れる】 =====
+      使える部品（下のSTEP例に1つずつ入れてあります。不要なものは削除、必要な数だけ複製）
+      ・STEPカード       <article class="step" data-step="01"> ... （番号は01,02,03…／ラベルは STEP 1, 2, 3…）
+      ・ラベルなしカード <div class="step"> ... （「コツ」「リサーチ」「困ったとき」などの補足用）
+      ・プロンプト       .prompt（折りたたみ式。複数ある場合は data-copy と id を prompt1, prompt2… と連番に）
+      ・チェックリスト   ul.check-list ／ 補足ボックス .plain-box ／ 注意 .note ／ コツ .rule
+      ・画像             img.illustration（1枚）／ .illustration-grid（複数枚。assets/ に置く）
+      ・表               .table-wrap > table
+    -->
+    <section class="steps" id="guide">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow steps-kicker">STEPS</p>
+          <h2>［作り方の◯ステップ］</h2>
+          <p>［このステップ全体で何ができるようになるかを1〜2文で］</p>
+        </div>
+
+        <article class="step" data-step="01">
+          <span class="step-label">STEP 1</span>
+          <h3>［STEP1の見出し］</h3>
+          <p>［STEP1の本文］</p>
+          <div class="prompt">
+            <div class="prompt-head"><b>［プロンプトの名前］</b><button class="copy" type="button" data-copy="prompt1">コピーする</button></div>
+            <details class="prompt-details">
+              <summary>プロンプトの内容を見る</summary>
+              <pre id="prompt1">［プロンプト本文］</pre>
+            </details>
+          </div>
+          <p>［プロンプトのあとに続く説明］</p>
+          <div class="plain-box">
+            <h3>［補足ボックスの見出し（例：テーマ例）］</h3>
+            <p>［補足ボックスの説明］</p>
+            <ul class="check-list">
+              <li>［項目1］</li>
+              <li>［項目2］</li>
+            </ul>
+          </div>
+          <div class="note"><b>［コツ・ポイント］：</b>［内容］</div>
+        </article>
+
+        <article class="step" data-step="02">
+          <span class="step-label">STEP 2</span>
+          <h3>［STEP2の見出し］</h3>
+          <p>［STEP2の本文］</p>
+          <ul class="check-list">
+            <li>［手順1］</li>
+            <li>［手順2］</li>
+            <li>［手順3］</li>
+          </ul>
+          <div class="illustration-grid">
+            <img class="illustration" src="./assets/［画像ファイル名1］.webp" alt="［画像の説明1］">
+            <img class="illustration" src="./assets/［画像ファイル名2］.webp" alt="［画像の説明2］">
+          </div>
+          <div class="rule">
+            <div><b>確認ポイント</b><p>［確認してほしいこと］</p></div>
+          </div>
+        </article>
+
+        <article class="step" data-step="03">
+          <span class="step-label">STEP 3</span>
+          <h3>［STEP3の見出し］</h3>
+          <p>［STEP3の本文］</p>
+          <img class="illustration" src="./assets/［画像ファイル名］.webp" alt="［画像の説明］">
+          <div class="note"><b>注意：</b>［注意点］</div>
+        </article>
+
+        <div class="step">
+          <h3>［補足カードの見出し（例：うまくいくコツ）］</h3>
+          <ul class="check-list">
+            <li>［項目1］</li>
+            <li>［項目2］</li>
+            <li>［項目3］</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>［表つきカードの見出し（例：うまくいかないときは）］</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>［列見出し1］</th><th>［列見出し2］</th></tr></thead>
+              <tbody>
+                <tr><td>［内容1］</td><td>［内容2］</td></tr>
+                <tr><td>［内容3］</td><td>［内容4］</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. 締めの一言【1行目は固定・2行目が変わる部分】 ===== -->
+    <section class="closing-message">
+      <div class="wrap">
+        <div class="completion"><b>ここまで読んでくださり、ありがとうございます。</b><span>［テーマに合わせた締めの一言（例：まずは一冊、絵本づくりから始めてみましょう✨）］</span></div>
+      </div>
+    </section>
+
+    <!-- ===== 7. 締めのMESSAGE【固定】 ===== -->
+    <section class="closing-message">
+      <div class="wrap">
+        <div class="message-card">
+          <span class="message-badge">公式LINE限定・無料</span>
+          <h3>AIワーク0-1達成 スタートブック</h3>
+          <p>50代からでも、できることは増やせます
+「このままでいいのかな……」</p>
+          <p>そう思いながら何もしなければ、
+時間だけが過ぎ、半年後も同じ悩みを抱えているかもしれません。</p>
+          <p>AIは、次々と変化しています。
+だからこそ、「いつか」ではなく、早めに始めることが大切です。</p>
+          <p>私も54歳のとき、
+パソコンがまったく分からない状態からAIを学び始めました。</p>
+          <p>そんな私でも少しずつできることが増え、
+AIを活用して副収入を得られるようになりました。</p>
+          <p>最初から全部できなくても大丈夫。
+まずは、小さな一歩から始めてみませんか？</p>
+          <p>LINEに登録すると、AIで副収入を目指すための
+『AIワーク0-1達成スタートブック』
+を無料で受け取れます。</p>
+          <p>半年後の自分を変える一歩を、今日から。</p>
+          <a class="button" href="https://x.gd/z6wxZ" target="_blank" rel="noopener noreferrer">公式LINEで無料で受け取る</a>
+          <p class="fine">登録後、公式LINEからお受け取りいただけます。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 8. 最後のCTA（特典バナー）【固定】 ===== -->
+    <section class="cta" id="present">
+      <div class="wrap">
+        <div class="cta-card">
+          <a class="cta-banner-link" href="https://x.gd/z6wxZ" target="_blank" rel="noopener noreferrer">
+            <img class="cta-banner" src="./assets/free-gift-banner.png" alt="AI副業の完全ガイド 5大特典無料プレゼント">
+          </a>
+          <p class="banner-caption">タップで受け取れます👆</p>
+          <p>AIで副収入を得ることに興味はあるけれど、何から始めればいいか分からない方へ。まずは一つずつ、一緒に進めてみませんか。</p>
+          <a class="button" href="https://x.gd/z6wxZ" target="_blank" rel="noopener noreferrer">5大特典を無料で受け取る</a>
+          <p class="fine">※特典の内容・提供期間は変更・終了する場合があります。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-links"><a href="https://www.instagram.com/kumi_ai_fukugyo/" target="_blank" rel="noopener noreferrer">Instagram</a></div>
+      <p>本ページは学習・情報提供を目的としたものです。成果には個人差があり、収益・表示回数・購入を保証するものではありません。商品情報や各サービスの規約は変更される場合があるため、実践時に公式情報をご確認ください。</p>
+      <p>© 2026 Kumi</p>
+    </div>
+  </footer>
+
+  <div class="sticky"><a class="button" href="https://x.gd/z6wxZ" target="_blank" rel="noopener noreferrer">5大特典を無料で受け取る</a></div>
+  <script>
+    document.querySelectorAll('[data-copy]').forEach(function(button){
+      button.addEventListener('click',function(){
+        var target=document.getElementById(button.dataset.copy);
+        navigator.clipboard.writeText(target.innerText).then(function(){
+          var old=button.textContent;button.textContent='コピーしました';
+          setTimeout(function(){button.textContent=old},1800);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
