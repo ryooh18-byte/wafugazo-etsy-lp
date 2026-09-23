@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>［ページタイトルをここに入力］</title>
-  <meta name="description" content="［メタディスクリプション（検索結果に表示される説明文）をここに入力］">
+  <title>ChatGPT×Etsy 海外向けAIアート販売スタートガイド｜くみ</title>
+  <meta name="description" content="ChatGPTで画像を作り、Etsyで海外向けに販売するまでの流れを初心者向けに解説。2:3サイズの1商品を出品するところまで、コピペで使えるプロンプト付きで順番に紹介します。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
@@ -66,7 +66,7 @@
     .intro-text{margin:0;color:var(--muted);text-align:center;max-width:560px;margin-inline:auto;line-height:1.95;white-space:pre-line}
 
     /* ===== このLPの概要 ===== */
-    .overview p{color:var(--muted);text-align:center;max-width:640px;margin:0 auto 22px;white-space:pre-line}
+    .overview p{color:var(--muted);text-align:left;max-width:640px;margin:0 auto 22px;white-space:pre-line}
     .overview .check-list{max-width:460px;margin:0 auto}
 
     /* ===== ステップ形式 ===== */
@@ -88,8 +88,8 @@
     .prompt{position:relative;background:linear-gradient(145deg,#262a27,#343a35);color:#f9f7f1;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:22px;margin-top:23px;box-shadow:0 14px 30px rgba(32,35,32,.15)}
     .prompt:before{content:"";position:absolute;left:0;top:22px;bottom:22px;width:3px;border-radius:0 3px 3px 0;background:var(--terra)}
     .prompt-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:12px}
-    .prompt-head b{font-size:.9rem;color:#dbe8d8}
-    .copy{border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;border-radius:999px;padding:7px 13px;cursor:pointer;font:inherit;font-size:.78rem}
+    .prompt-head b{font-size:.9rem;color:#dbe8d8;flex:1;min-width:0}
+    .copy{border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;border-radius:999px;padding:7px 13px;cursor:pointer;font:inherit;font-size:.78rem;flex-shrink:0;white-space:nowrap}
     .prompt pre{white-space:pre-wrap;margin:0;font-family:var(--sans);font-size:.87rem;line-height:1.75;color:#f7f3e9}
     .prompt-details summary{cursor:pointer;color:#cfe3d5;font-size:.85rem}
     .prompt-details summary::marker{color:#cfe3d5}
@@ -183,7 +183,7 @@
         </a>
       </div>
       <div class="hero-title">
-        <h1>［タイトル1行目］<br><em>［強調したいキーワード（例：完全ガイド）］</em></h1>
+        <h1>ChatGPT×Etsyではじめる<br><em>海外向けAIアート販売ガイド</em></h1>
       </div>
     </div>
   </header>
@@ -214,13 +214,15 @@ AIで副収入を得るための方法を分かりやすく発信しています
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">このガイドについて</p>
-          <h2>［テーマ名］とは</h2>
+          <h2>ChatGPT×Etsy 海外向けAIアート販売とは</h2>
         </div>
-        <p>［テーマを1文で説明］</p>
+        <p>ChatGPTで画像を作ってみたものの、<br>「これって販売できるの？」「どんなサイズにすればいい？」「英語の商品説明なんて書けない…」<br>そんなところで止まっていませんか。</p>
+        <p>実は、画像を作ったその先も、ChatGPTに手伝ってもらうことができます。</p>
+        <p>このガイドでは、<br>ChatGPTで画像を作る → 販売用データにする → タイトル・商品説明を作る → Etsyへ出品する<br>ところまで、初心者さんにもわかるように順番にまとめました。</p>
         <ul class="check-list">
-          <li>［ポイント1］</li>
-          <li>［ポイント2］</li>
-          <li>［ポイント3］</li>
+          <li>ChatGPTで画像を作る→販売データにする→出品するまでを順番に解説</li>
+          <li>英語が得意でなくても大丈夫。プロンプトはコピペでOK</li>
+          <li>まずは2:3比率の1商品を完成させることだけを目指す</li>
         </ul>
       </div>
     </section>
@@ -238,79 +240,454 @@ AIで副収入を得るための方法を分かりやすく発信しています
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow steps-kicker">STEPS</p>
-          <h2>［作り方の◯ステップ］</h2>
-          <p>［このステップ全体で何ができるようになるかを1〜2文で］</p>
+          <h2>まずは1商品、出品までの5ステップ</h2>
+          <p>テーマを決めて、ChatGPTで画像を作り、Etsyに出品する。<br>この5ステップで、まずは1商品の出品を目指しましょう。</p>
+        </div>
+
+        <div class="step">
+          <h3>今回やることは、この5STEP</h3>
+          <ul class="check-list">
+            <li><strong>STEP1</strong>　販売するテーマを決める</li>
+            <li><strong>STEP2</strong>　ChatGPTで販売用アートを作る</li>
+            <li><strong>STEP3</strong>　2:3サイズの販売データにする</li>
+            <li><strong>STEP4</strong>　商品タイトル・説明・タグを作る</li>
+            <li><strong>STEP5</strong>　Etsyへ出品する</li>
+          </ul>
+          <p>そして最後に、🎁追加特典として「5種類の販売サイズへ展開する方法」もプレゼントします。</p>
+        </div>
+
+        <div class="step">
+          <h3>こんなこと、ありませんか？</h3>
+          <p>AIで画像を作れるようにはなったけど…</p>
+          <ul class="check-list">
+            <li>作った画像をどう商品にすればいいかわからない</li>
+            <li>どんなサイズで販売すればいいかわからない</li>
+            <li>Etsyを見ても英語ばかりで難しそう</li>
+            <li>商品タイトルを英語で考えられない</li>
+            <li>商品説明を書くところで止まってしまう</li>
+            <li>Etsyへの登録方法がわからない</li>
+            <li>そもそも、何を作ったらいいかわからない</li>
+          </ul>
+          <p>でも、ひとつずつ分けて考えると、やることは意外とシンプルです。</p>
         </div>
 
         <article class="step" data-step="01">
           <span class="step-label">STEP 1</span>
-          <h3>［STEP1の見出し］</h3>
-          <p>［STEP1の本文］</p>
-          <div class="prompt">
-            <div class="prompt-head"><b>［プロンプトの名前］</b><button class="copy" type="button" data-copy="prompt1">コピーする</button></div>
-            <details class="prompt-details">
-              <summary>プロンプトの内容を見る</summary>
-              <pre id="prompt1">［プロンプト本文］</pre>
-            </details>
-          </div>
-          <p>［プロンプトのあとに続く説明］</p>
+          <h3>何を販売するか決めよう</h3>
+          <p>最初にすることは、いきなり画像を作ることではありません。まず、「何を作るか」を決めます。</p>
+          <p>海外向けのデジタルウォールアートなら、日本らしさを感じるテーマがあります。</p>
           <div class="plain-box">
-            <h3>［補足ボックスの見出し（例：テーマ例）］</h3>
-            <p>［補足ボックスの説明］</p>
+            <h3>テーマ例</h3>
+            <p>たとえば、こんなテーマがあります。</p>
             <ul class="check-list">
-              <li>［項目1］</li>
-              <li>［項目2］</li>
+              <li>富士山／桜／京都／鳥居</li>
+              <li>花火／日本庭園／鯉</li>
+              <li>和モダン／Japandi／Japanese Vintage</li>
             </ul>
           </div>
-          <div class="note"><b>［コツ・ポイント］：</b>［内容］</div>
+          <p>ただし、自分が好きなものだけで決めるのではなく、Etsyでどんな商品が販売されているか確認してから作るという方法もおすすめです。</p>
+          <div class="note"><b>何を作ればいいか迷ったら：</b>最後の🎁追加特典②に、Etsyで売れているテーマを調べるためのリサーチ用プロンプトも用意しています。</div>
         </article>
 
         <article class="step" data-step="02">
           <span class="step-label">STEP 2</span>
-          <h3>［STEP2の見出し］</h3>
-          <p>［STEP2の本文］</p>
-          <ul class="check-list">
-            <li>［手順1］</li>
-            <li>［手順2］</li>
-            <li>［手順3］</li>
-          </ul>
+          <h3>ChatGPTで販売用アートを作ろう</h3>
+          <p>テーマが決まったら、ChatGPTで画像を作ります。今回は例として、「日本の夏の花火」をテーマにしてみます。</p>
+          <p><strong>このプロンプトをコピーして使ってください</strong></p>
+          <div class="prompt">
+            <div class="prompt-head"><b>販売用和風画像作成プロンプト</b><button class="copy" type="button" data-copy="prompt1">コピーする</button></div>
+            <details class="prompt-details">
+              <summary>プロンプトの内容を見る</summary>
+              <pre id="prompt1">海外向けのデジタルウォールアートとして販売する、
+縦型アート作品を作ってください。
+
+【テーマ】
+日本らしさを感じる和風アート
+
+【今回の題材】
+日本の夏の花火
+
+【用途】
+Etsyで販売するデジタルダウンロード商品
+
+【仕上がりの方向性】
+上品
+落ち着いている
+大人っぽい
+和モダン
+海外の部屋にも飾りやすい
+高級感がある
+ごちゃごちゃしすぎない
+
+【色の雰囲気】
+落ち着いた色味
+深い藍色
+くすみカラー
+淡い赤
+金色
+派手すぎる原色は避ける
+
+【構図】
+縦型
+主役となるモチーフは中央寄りに配置する
+上下左右に少し余白を残す
+重要な被写体が端に寄りすぎない構図にする
+
+【重要】
+・文字、ロゴ、透かしは入れない
+・人物や建物が不自然に崩れないようにする
+・ポスターとして飾りたくなる完成度を意識する
+・あとで2:3サイズの商品データにしやすい構図にする
+・安っぽく見えない仕上がりにする
+
+まずは1枚、販売向きの完成画像を作ってください。</pre>
+            </details>
+          </div>
+          <p>テーマ部分だけ変えればOKです。たとえば、「日本の夏の花火」を「富士山と桜」に変えたり、「京都の夜景」に変えたり、「鳥居と日本庭園」に変えたりできます。</p>
+          <p>まずは、自分が「これを販売してみたい」と思える1枚を作ってみましょう。</p>
           <div class="illustration-grid">
-            <img class="illustration" src="./assets/［画像ファイル名1］.webp" alt="［画像の説明1］">
-            <img class="illustration" src="./assets/［画像ファイル名2］.webp" alt="［画像の説明2］">
+            <img class="illustration" src="./assets/wafugazo-chatgpt-example-kinkakuji-snow.webp" alt="ChatGPTで生成した和風アートの完成例：雪の金閣寺">
+            <img class="illustration" src="./assets/wafugazo-chatgpt-example-castle-sakura-moon.webp" alt="ChatGPTで生成した和風アートの完成例：桜と満月の城">
+            <img class="illustration" src="./assets/wafugazo-chatgpt-example-fireworks.webp" alt="ChatGPTで生成した和風アートの完成例：日本の夏の花火">
           </div>
-          <div class="rule">
-            <div><b>確認ポイント</b><p>［確認してほしいこと］</p></div>
-          </div>
+          <p class="illustration-caption">実際にChatGPTで作った完成イメージ（テーマ違いの例）</p>
         </article>
 
         <article class="step" data-step="03">
           <span class="step-label">STEP 3</span>
-          <h3>［STEP3の見出し］</h3>
-          <p>［STEP3の本文］</p>
-          <img class="illustration" src="./assets/［画像ファイル名］.webp" alt="［画像の説明］">
-          <div class="note"><b>注意：</b>［注意点］</div>
-        </article>
-
-        <div class="step">
-          <h3>［補足カードの見出し（例：うまくいくコツ）］</h3>
-          <ul class="check-list">
-            <li>［項目1］</li>
-            <li>［項目2］</li>
-            <li>［項目3］</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>［表つきカードの見出し（例：うまくいかないときは）］</h3>
+          <h3>販売用サイズにしよう</h3>
+          <p>ここで、「販売するなら何サイズ作ればいいの？」と思いますよね。最初から、5種類も10種類も作る必要はありません。このガイドでは、まず1種類だけにします。</p>
+          <p><strong>今回使うサイズ：2:3 / 7200 × 10800px</strong></p>
+          <p>この比率なら、同じデータから、4×6 / 8×12 / 12×18 / 16×24 / 20×30 / 24×36インチなど、同じ2:3比率のサイズへ縮小して印刷できます。</p>
+          <p>つまり…20種類の画像を作る必要はありません。まずは、2:3の高解像度データを1枚作る。これでOKです。</p>
           <div class="table-wrap">
             <table>
-              <thead><tr><th>［列見出し1］</th><th>［列見出し2］</th></tr></thead>
+              <thead><tr><th>項目</th><th>内容</th></tr></thead>
               <tbody>
-                <tr><td>［内容1］</td><td>［内容2］</td></tr>
-                <tr><td>［内容3］</td><td>［内容4］</td></tr>
+                <tr><td>比率</td><td>2:3</td></tr>
+                <tr><td>最終サイズ</td><td>7200 × 10800px</td></tr>
+                <tr><td>ファイル形式</td><td>JPG</td></tr>
+                <tr><td>用途</td><td>Etsyデジタルダウンロード商品</td></tr>
               </tbody>
             </table>
           </div>
+          <div class="note"><b>大切なのは無理やり引き伸ばさないこと：</b>元画像の縦横比が違う場合、7200×10800pxへただ引き伸ばすだけではNGです。画像が歪んだり、被写体が不自然になる可能性があります。<br><br>そのため、ChatGPTに画像を見せて、2:3にするにはどう調整すればいいか確認してみましょう。</div>
+          <div class="prompt">
+            <div class="prompt-head"><b>画像を2:3サイズに仕上げるプロンプト</b><button class="copy" type="button" data-copy="prompt2">コピーする</button></div>
+            <details class="prompt-details">
+              <summary>プロンプトの内容を見る</summary>
+              <pre id="prompt2">この画像を、Etsyで販売する
+デジタルウォールアート用のデータとして仕上げたいです。
+
+以下の条件で整えるために、
+必要な作業内容を初心者にもわかるように
+順番で教えてください。
+
+【販売データの条件】
+
+・比率：2:3
+・最終サイズ：7200 × 10800px
+・形式：JPG
+・用途：Etsyのデジタルダウンロード販売用
+
+【対応印刷サイズ】
+
+4×6
+8×12
+12×18
+16×24
+20×30
+24×36インチ
+
+【教えてほしいこと】
+
+1. この画像が2:3比率に合っているか
+2. 合っていない場合、どこをトリミングすると自然か
+3. 引き伸ばしではなく自然な構図調整で仕上げる方法
+4. 高画質化が必要かどうか
+5. 最終的に7200×10800pxへ仕上げる流れ
+6. Etsy登録に向いた保存形式
+7. 保存前に確認すべきポイント
+
+【重要】
+
+・画像を縦横に不自然に引き伸ばさない
+・元画像の雰囲気、色、主役の見え方をできるだけ保つ
+・文字や新しい不要要素を追加しない
+・初心者向けに、やることを順番で整理して説明する</pre>
+            </details>
+          </div>
+          <div class="plain-box">
+            <h3>保存する前にチェック</h3>
+            <p>商品データが完成したら、次のポイントを確認します。</p>
+            <ul class="check-list">
+              <li>画像が歪んでいない？　富士山や建物、人物などが、縦や横に伸びていないか確認。</li>
+              <li>画像が荒れていない？　拡大したことで、ぼやけたり、細かい部分が崩れていないか確認。</li>
+              <li>余計な文字が入っていない？　AI画像では、意味のわからない文字のような模様が入ることがあります。細かい部分まで確認しておきます。</li>
+              <li>ファイル容量を確認　Etsyのデジタルダウンロードは、1ファイルにつき20MBまでという上限があります（本ガイド作成時点）。7200×10800pxの高画質JPGだと20MBを超えることがあるため、圧縮して容量を下げられるか確認しましょう。上限は変更される場合があるため、出品前にEtsyの公式情報も確認してください。</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="step" data-step="04">
+          <span class="step-label">STEP 4</span>
+          <h3>タイトル・商品説明もChatGPTに作ってもらおう</h3>
+          <p>画像が完成したら、次は、Etsyの商品ページを作ります。でも、海外向けの商品だから、「英語で商品説明を書くなんて無理…」と思いますよね。</p>
+          <p>ここも、ChatGPTに手伝ってもらいます。完成した商品画像をChatGPTへ送って、次のプロンプトを入力します。</p>
+          <div class="prompt">
+            <div class="prompt-head"><b>Etsy商品ページ作成プロンプト</b><button class="copy" type="button" data-copy="prompt3">コピーする</button></div>
+            <details class="prompt-details">
+              <summary>プロンプトの内容を見る</summary>
+              <pre id="prompt3">添付した画像を
+Etsyで海外向けのデジタルウォールアートとして販売します。
+
+この画像に合った
+Etsy用の商品ページ文章を英語で作成してください。
+
+【作成してほしいもの】
+
+1. 商品タイトル
+2. 商品説明文
+3. 商品の魅力を短く伝える一言
+4. デジタル商品であることの説明
+5. 購入者向けの注意書き
+6. AIを活用して制作したことの開示文
+7. Etsy用タグ13個
+8. 商品画像に入れる短い英語テキスト案
+
+【条件】
+
+・タイトルはわかりやすく自然な英語にする
+・商品内容が伝わる言葉を使う
+・同じ単語の不自然な繰り返しは避ける
+・実物発送ではなくデジタルダウンロード商品であることを明記する
+・画像から確認できない内容を勝手に追加しない
+・大げさな売上保証や誤解を招く表現は使わない
+・タグはEtsy向けに13個作る
+
+【商品データ】
+
+2:3比率
+高解像度JPG 1枚
+
+印刷可能サイズ例：
+
+4×6
+8×12
+12×18
+16×24
+20×30
+24×36インチ
+
+最後に、
+
+・日本語訳
+・そのままコピペしやすい形
+
+で出力してください。</pre>
+            </details>
+          </div>
+          <div class="note"><b>英語をゼロから考えなくてOK：</b>ChatGPTに作ってもらった文章を、そのまま使う前に、日本語訳を確認します。<br><br>そして、画像と説明が合っているかを確認してからEtsyへ登録します。</div>
+        </article>
+
+        <article class="step" data-step="05">
+          <span class="step-label">STEP 5</span>
+          <h3>Etsyへ商品を登録しよう</h3>
+          <p>ここまでできたら、いよいよEtsyへ出品します。今回販売するのは、デジタル商品です。実物のポスターを発送するのではなく、購入した人が画像データをダウンロードする商品として登録します。</p>
+
+          <div class="plain-box">
+            <h3>5-1　Etsyのアカウントを作る</h3>
+            <p>Etsyのトップページから「さっそく始めましょう」を選ぶと、ログイン・登録の画面が開きます。</p>
+            <ul class="check-list">
+              <li>メールアドレスで新しく登録することもできます</li>
+              <li>すでに使っているGoogleアカウントがあれば、「Googleでログイン」を選ぶと、新しいパスワードを覚える必要がなく簡単です</li>
+            </ul>
+          </div>
+
+          <div class="plain-box">
+            <h3>5-2　Etsyショップを開く（最初の1回だけ）</h3>
+            <p>アカウントができたら、次に「ショップを開く」手続きをします。ショップの言語・国・通貨・ショップ名・入金方法・お支払い情報・セキュリティ設定、といった画面が順番に出てくるので、ひとつずつ答えていきます。</p>
+            <div class="note"><b>ショップ名に迷ったら：</b>まずは仮の名前で進めてOKです。完璧を目指さなくて大丈夫です。</div>
+            <div class="note"><b>「法人アドレス」と出てきても大丈夫：</b>手続きの途中で「法人（Business）」の住所を聞かれる場面がありますが、法人を持っている必要はありません。個人事業主や、まずは1商品からはじめる方でも、自分の自宅の住所を入力すれば大丈夫です。</div>
+            <div class="note"><b>「入金方法」で少し時間がかかります：</b>海外からの売上を日本の銀行口座で受け取るために、Payoneer（ペイオニア）という決済サービスの登録が必要になります。<br><br>Payoneer側では、事業やご自身についての情報、受け取り用の銀行口座、本人確認書類（住所の証明・顔写真での本人確認など）の提出が必要で、確認にも少し時間がかかります。ここだけで20〜30分ほどかかることもあるので、時間に余裕があるときに進めるのがおすすめです。<br><br>一度登録してしまえば、次の商品からはこの手続きは不要です。</div>
+          </div>
+
+          <div class="plain-box">
+            <h3>5-3　商品を出品する</h3>
+            <p>ショップができたら、管理画面（Shop Manager）から「出品する」「＋商品を追加」といったボタンを押して、新しい商品ページを作ります。入力する主な項目はこちらです。</p>
+            <ul class="check-list">
+              <li>商品画像：まず、商品の完成画像を登録します。できれば、画像だけではなく、実際に部屋へ飾ったイメージも用意しましょう。たとえば、リビング／寝室／玄関／デスク周りなど。</li>
+              <li>商品タイトル：STEP4でChatGPTに作ってもらった英語タイトルを入力します。</li>
+              <li>商品説明：商品説明には、特に、DIGITAL DOWNLOADであることをわかりやすく書いておきます。実物の額やポスターが郵送される商品ではありません。</li>
+              <li>AI使用についての説明：AIを使って制作した商品であることを、Etsyのルールに合わせて開示します。</li>
+              <li>タグ：ChatGPTに作ってもらったタグを確認し、商品に合ったものを登録します。</li>
+              <li>商品データ：今回作った、2:3 / 7200 × 10800px のJPGデータを登録します。ファイル名もわかりやすく、たとえば Japanese_Fireworks_2x3_24x36.jpg のように、購入した人にも何のファイルかわかる名前にしておきます。</li>
+            </ul>
+            <div class="note"><b>忘れずに：</b>商品の種類を選ぶところで、「実物（Physical item）」ではなく「デジタル（Digital item）」を選びます。これを選ぶことで、購入者は郵送を待たずにその場でファイルをダウンロードできる仕組みになります。</div>
+            <div class="note"><b>出品には少額の手数料がかかります：</b>Etsyでは、商品を1つ出品するごとに $0.20 USD の出品料がかかります（本ガイド作成時点）。売れなかった場合も、出品を続けていると更新のタイミングで再度かかります。商品が売れたときには、販売手数料も別途かかります。最新の金額はEtsy公式の手数料ページで確認してください。</div>
+          </div>
+
+          <div class="plain-box">
+            <h3>5-4　内容を確認して公開する</h3>
+            <p>入力した内容、画像、価格、ファイルに間違いがないか確認したら、「公開する」「出品する」といったボタンを押して商品を公開します。</p>
+          </div>
+
+          <div class="note">画面のボタン名や手順は、2026年9月時点のEtsyの表示にもとづいています。実際の画面とは多少異なる場合があるため、進めながら最新のEtsy公式ヘルプもあわせて確認してください。</div>
+
+          <img class="illustration" src="./assets/wafugazo-room-mockup.webp" alt="Etsy出品イメージ：部屋に飾った和風アートのモックアップ">
+          <div class="note"><b>ここまでできれば1商品出品できます：</b>テーマを決める → ChatGPTで画像を作る → 2:3の商品データにする → タイトル・商品説明を作る → Etsyへ登録する。これだけです。<br><br>最初から、完璧なショップを作る必要はありません。まず1商品出品してみる。ここから始めてみましょう。</div>
+        </article>
+
+        <div class="step">
+          <h3>🎁 追加特典① もっと販売サイズを増やしたい方へ</h3>
+          <p>ここまでの方法では、初心者さんが迷わないように、2:3の1種類だけで出品しました。</p>
+          <p>でも、購入する人によって、飾りたいサイズは違います。たとえば、8×10／11×14／A4／18×24など、2:3以外の比率を使いたい人もいます。</p>
+          <p>そこで、もっと商品を充実させたい方は、5種類の販売サイズへ展開する方法もあります。</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>比率</th><th>最大データサイズ</th><th>主な対応サイズ</th></tr></thead>
+              <tbody>
+                <tr><td>2:3</td><td>7200×10800px</td><td>4×6 / 8×12 / 12×18 / 16×24 / 20×30 / 24×36</td></tr>
+                <tr><td>3:4</td><td>7200×9600px</td><td>6×8 / 9×12 / 12×16 / 15×20 / 18×24 / 24×32</td></tr>
+                <tr><td>4:5</td><td>7200×9000px</td><td>4×5 / 8×10 / 12×15 / 16×20 / 24×30</td></tr>
+                <tr><td>11:14</td><td>3300×4200px</td><td>11×14</td></tr>
+                <tr><td>A判</td><td>7016×9933px</td><td>A1 / A2 / A3 / A4 / A5</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>でも、5種類を自分で計算しなくてOKです。ここでも、ChatGPTに手伝ってもらいます。</p>
+          <div class="prompt">
+            <div class="prompt-head"><b>5サイズ展開専用プロンプト</b><button class="copy" type="button" data-copy="prompt4">コピーする</button></div>
+            <details class="prompt-details">
+              <summary>プロンプトの内容を見る</summary>
+              <pre id="prompt4">この画像を、Etsyで販売する
+デジタルウォールアート用に、
+5種類の印刷比率へ展開したいです。
+
+元画像の雰囲気、色、主役の見え方、世界観をできるだけ保ちながら、
+販売用として自然に展開する方法を教えてください。
+
+【作成したい比率とサイズ】
+
+1. 2:3 → 7200 × 10800px
+2. 3:4 → 7200 × 9600px
+3. 4:5 → 7200 × 9000px
+4. 11:14 → 3300 × 4200px
+5. ISO A1 → 7016 × 9933px
+
+【このプロンプトでしてほしいこと】
+
+1. 元画像の構図を確認する
+2. 5種類それぞれについて
+   ・そのまま使えるか
+   ・トリミングが必要か
+   ・背景の拡張が必要か
+   を判断する
+3. 比率ごとにどのように構図調整すると自然か説明する
+4. 画像を不自然に引き伸ばさずに展開する方法を教える
+5. 高画質化が必要なら、その考え方も説明する
+6. 各サイズの対応印刷サイズを整理する
+7. Etsyへアップロードしやすいファイル名例を提案する
+
+【対応印刷サイズ】
+
+2:3
+4×6 / 8×12 / 12×18 / 16×24 / 20×30 / 24×36
+
+3:4
+6×8 / 9×12 / 12×16 / 15×20 / 18×24 / 24×32
+
+4:5
+4×5 / 8×10 / 12×15 / 16×20 / 24×30
+
+11:14
+11×14
+
+A判
+A1 / A2 / A3 / A4 / A5
+
+【重要】
+
+・縦横に不自然に引き伸ばさない
+・可能な限り主役の見え方を保つ
+・画像の雰囲気や完成度を下げない
+・初心者にもわかるように比率ごとに分けて説明する
+
+最後に、
+
+「この画像を5種類展開する場合の実行手順」
+
+を1から順番にまとめてください。</pre>
+            </details>
+          </div>
+          <p>まず1種類。慣れたら5種類。最初から全部やろうとすると、大変に感じてしまいます。だから、まずは2:3。1商品出品できたら、次に5サイズ展開。少しずつ増やしていきましょう。</p>
+        </div>
+
+        <div class="step">
+          <h3>🎁 追加特典② 何を作ればいいかわからない方へ　Etsy商品テーマリサーチ用プロンプト</h3>
+          <p>「そもそも何を作ればいいの？」そんなときも、ChatGPTにリサーチを手伝ってもらえます。</p>
+          <div class="prompt">
+            <div class="prompt-head"><b>売れ筋リサーチ用プロンプト</b><button class="copy" type="button" data-copy="prompt5">コピーする</button></div>
+            <details class="prompt-details">
+              <summary>プロンプトの内容を見る</summary>
+              <pre id="prompt5">Etsyで販売する
+海外向けデジタルウォールアートの市場調査をしたいです。
+
+必ずWeb検索を使って、
+実際のEtsy上の公開情報を確認しながら調査してください。
+
+今回は、
+
+「Japanese Wall Art」
+「Japandi Wall Art」
+「Japanese Printable Art」
+
+を中心に調べてください。
+
+【調べてほしいこと】
+
+1. どんなテーマの商品が多いか
+2. よく使われているタイトル表現
+3. よく使われているタグ候補
+4. 確認できる価格帯
+5. 単品販売とセット販売の傾向
+6. 競合が多そうなテーマ
+7. 比較的ニッチそうなテーマ
+8. これから出品するなら候補になりそうなテーマ10個
+
+【重要】
+
+・推測を事実として書かない
+・確認できた情報と推測を分ける
+・ショップ全体の販売数と個別商品の売れ行きを混同しない
+・販売数が確認できない商品を「売れている」と断定しない
+・調査した日付を明記する
+・確認した情報源を示す
+
+最後に、
+
+「需要が確認できるテーマ」
+「競合が多いテーマ」
+「さらに調査する価値があるテーマ」
+
+に分けて整理してください。</pre>
+            </details>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>結び：AIで作るだけで終わらせない</h3>
+          <p>AIを使えば、画像を作ることは以前よりずっと身近になりました。でも、画像を作っただけでは、まだ商品ではありません。</p>
+          <p>何を作るか考える<br>→ 販売できる形にする<br>→ 商品として説明する<br>→ 実際に出品する</p>
+          <p>そこまで進んで、初めて「販売への一歩」になります。</p>
+        </div>
+
+        <div class="step">
+          <h3>ご利用前にご確認ください</h3>
+          <p>このガイドは、AIを活用してデジタル商品を作り、Etsyへの出品を始めるための手順を紹介するものです。売上や利益を保証するものではありません。</p>
+          <p>商品の販売状況は、テーマ、デザイン、価格、商品ページ、競合状況など、さまざまな要因によって変わります。</p>
+          <p>EtsyやAIサービスの仕様、料金、利用規約、販売ルールなどは変更される場合があります。実際に販売する際には、各サービスの公式情報を確認してください。</p>
+          <p>AIを使った作品を販売する場合は、使用したAIサービスの商用利用条件も確認してください。</p>
         </div>
       </div>
     </section>
@@ -318,7 +695,7 @@ AIで副収入を得るための方法を分かりやすく発信しています
     <!-- ===== 6. 締めの一言【1行目は固定・2行目が変わる部分】 ===== -->
     <section class="closing-message">
       <div class="wrap">
-        <div class="completion"><b>ここまで読んでくださり、ありがとうございます。</b><span>［テーマに合わせた締めの一言（例：まずは一冊、絵本づくりから始めてみましょう✨）］</span></div>
+        <div class="completion"><b>ここまで読んでくださり、ありがとうございます。</b><span>まずは1商品、Etsyに出品してみましょう。あなたが作ったアートが、世界のどこかの誰かの部屋を彩るかもしれません✨</span></div>
       </div>
     </section>
 
