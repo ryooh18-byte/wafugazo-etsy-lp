@@ -31,7 +31,7 @@ STEPは、`index.html` のコメントにある部品（STEPカード／プロ�
 - お礼＋自己紹介（ペルソナ文）
 - 締めのMESSAGE（AIワーク0-1達成スタートブックの案内文・LINEボタン）
 - 最後のCTA、固定フッターの免責、スマホ下部の固定ボタン
-- LINE登録リンク（`https://x.gd/z6wxZ`）は全箇所に直接入っています。変更する場合は `index.html` 内の `x.gd/z6wxZ` を一括置換してください。
+- LINE登録リンク（`https://sub.aione.co.jp/line/open/QFSiLvkqYbDv?mtid=LjfkfFq0NU0O`）は全箇所に直接入っています。変更する場合は `index.html` 内の `sub.aione.co.jp/line/open/QFSiLvkqYbDv?mtid=LjfkfFq0NU0O` を一括置換してください。
 - 全体のデザイン（CSS）、プロンプトの「コピーする」ボタンの動作
 
 ## ファイル構成
