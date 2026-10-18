@@ -152,6 +152,10 @@
     footer{padding:42px 0 110px;text-align:center;color:var(--muted);font-size:.8rem}
     .footer-links{display:flex;justify-content:center;gap:20px;margin-bottom:13px}
     .sticky{display:none}
+    /* 日本語の折り返し：文節で区切り、見出しは行の長さをそろえる */
+    body{word-break:auto-phrase;line-break:strict}
+    p,li,td,th,summary,.note,.rule p{text-wrap:pretty}
+    h1,h2,h3,.completion b,.bridge-lead{text-wrap:balance}
 
     @media(max-width:760px){
       body{font-size:16px}
