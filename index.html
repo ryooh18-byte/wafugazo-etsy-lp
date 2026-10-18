@@ -768,23 +768,43 @@ AIを活用して副収入を得られるようになりました。</p>
   <div class="sticky"><a class="button" href="https://sub.aione.co.jp/line/open/QFSiLvkqYbDv?mtid=LjfkfFq0NU0O" target="_blank" rel="noopener noreferrer">5大特典を無料で受け取る</a></div>
   <script>
     document.querySelectorAll('[data-copy]').forEach(function(button){
+      var label=button.textContent;
       button.addEventListener('click',function(){
         var target=document.getElementById(button.dataset.copy);
         var text=target.textContent;
-        function done(){
-          var old=button.textContent;button.textContent='コピーしました';
-          setTimeout(function(){button.textContent=old},1800);
+        function flash(msg){
+          button.textContent=msg;
+          setTimeout(function(){button.textContent=label},1800);
         }
-        function fallback(){
+        function done(){flash('コピーしました')}
+        function manual(){
+          var box=target.closest('details');
+          if(box)box.open=true;
+          var range=document.createRange();range.selectNodeContents(target);
+          var sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);
+          var host=button.closest('.prompt')||button.parentElement;
+          var note=host.querySelector('.copy-note');
+          if(!note){
+            note=document.createElement('p');note.className='copy-note';
+            note.style.cssText='margin:12px 0 0;font-size:.8rem;line-height:1.7;color:#f3d9c9';
+            host.appendChild(note);
+          }
+          note.textContent='自動でコピーできませんでした。下の文章を選択したので、Ctrl+C（スマホは長押し→コピー）でコピーしてください。';
+          flash('手動でコピー');
+        }
+        function legacy(){
           var ta=document.createElement('textarea');
-          ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
-          document.body.appendChild(ta);ta.select();
-          try{document.execCommand('copy');done()}catch(e){}
+          ta.value=text;ta.setAttribute('readonly','');
+          ta.style.cssText='position:fixed;top:0;left:0;opacity:0';
+          document.body.appendChild(ta);ta.focus();ta.select();ta.setSelectionRange(0,text.length);
+          var ok=false;try{ok=document.execCommand('copy')}catch(e){}
           document.body.removeChild(ta);
+          return ok;
         }
+        if(legacy()){done();return}
         if(navigator.clipboard&&navigator.clipboard.writeText){
-          navigator.clipboard.writeText(text).then(done,fallback);
-        }else{fallback()}
+          navigator.clipboard.writeText(text).then(done,manual);
+        }else{manual()}
       });
     });
   </script>
